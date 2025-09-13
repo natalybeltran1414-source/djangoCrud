@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle de la Tarea</title>
+</head>
+<body>
+    <h1>Detalle de la Tarea</h1>
+    <ul>
+        <li><strong>Título:</strong> {{ task.title }}</li>
+        <li><strong>Descripción:</strong> {{ task.description }}</li>
+        <li><strong>Fecha de creación:</strong> {{ task.created_at }}</li>
+        <li><strong>Completada:</strong> {{ task.completed|yesno:"Sí,No" }}</li>
+    </ul>
+    <a href="{% url 'tasks' %}">Volver a la lista de tareas</a>
+</body>
+</html>

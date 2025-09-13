@@ -1,3 +1,4 @@
+from django.shortcuts import render, redirect, get_object_or_404
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -18,6 +19,16 @@ def tasks(request):
                                  datecompleted__isnull=True)
     return render(request, "tasks.html",
                   {"tasks":tasks})
+
+def select(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    if request.method == "POST":
+        return redirect('tasks')
+    return render(request, 'select.html', {'task': task})
+
+def detail_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id, user=request.user)
+    return render(request, "detail_task.html", {"task": task})
 
 def create_task(request):
     if request.method == "GET":
